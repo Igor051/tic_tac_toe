@@ -1,0 +1,82 @@
+.registrationForm {
+    background-color: rgba(67, 81, 63, 0.32);
+    display: inline-block;
+    border: 3px solid black;
+    padding: 6px;
+    margin-left: 40%;
+    margin-right: 40%;
+    margin-top: 20px;
+}
+
+.field {
+    display: block;
+    margin: 5px 0 0 5px;
+    width: 240px;
+    height: 30px;
+}
+
+.submitButton {
+    float: right;
+    width: 90px;
+    height: 35px;
+    margin-top: 5px;
+    border-radius: 5%;
+}
+
+.submitButton:hover {
+    background-color: #8d8989;
+}
+
+
+@media screen and (max-width: 600px) {
+    .field {
+        width: 320px;
+        height: 44px;
+    }
+
+    ::placeholder {
+        font-size: 1.6em;
+    }
+
+    body {
+        font-size: 1.5em;
+    }
+    button{
+        font-size: 1em;
+    }
+}
+
+@media screen and (max-width: 400px) {
+    .field {
+        margin-top: 8px;
+        width: 100%;
+    }
+    .registrationForm {
+        display: inline-block;
+        padding: 6px;
+        margin-left: 0;
+        margin-right: 0;
+        margin-top: 20px;
+        width: 100%;
+        border: none;
+    }
+
+    .submitButton {
+        float: right;
+        width: 100px;
+        height: 35px;
+        margin-top: 10px;
+        border-radius: 5%;
+        margin-right: 6%;
+    }
+
+}
+@media screen and (max-width: 340px){
+    .registrationForm{
+        width: 320px;
+        background-color: transparent;
+    }
+    .field{
+        margin-left: 0;
+    }
+}
