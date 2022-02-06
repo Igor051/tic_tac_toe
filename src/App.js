@@ -11,8 +11,6 @@ import AppRoutes from "./components/AppRoutes/AppRoutes";
 // import PropTypes from "prop-types";
 
 
-
-
 function App() {
     return (
         <BrowserRouter>

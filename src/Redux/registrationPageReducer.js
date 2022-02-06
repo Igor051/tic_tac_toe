@@ -3,6 +3,7 @@ import {API} from "../api/api";
 const SET_ANSWER = "SET_ANSWER"
 const SET_ERROR = "SET_ERROR"
 const LOG_OUT = "LOG_OUT"
+const ON_GAME_REQUEST = "ON_GAME_REQUEST"
 
 // Валідація інпут полів
 export const required = value => value ? undefined : 'Required'
@@ -24,6 +25,7 @@ let initialState = {
     nickname: "",
     _id: "",
     loggedIn: false,
+    emit_msg: "",
     badAuthData: {
         present: false,
         message: ""
@@ -45,6 +47,8 @@ const registrationPageReducer = (state = initialState, action) => {
             return {...state, badAuthData: {present: true, message: action.data}}
         case LOG_OUT:
             return {...state, nickname: "", _id: "", loggedIn: false}
+        case ON_GAME_REQUEST:
+            return {...state, emit_msg: "Emit is here"}
         default:
             return state
     }
@@ -53,6 +57,7 @@ const registrationPageReducer = (state = initialState, action) => {
 const setAnswerAC = (answer) => ({type: SET_ANSWER, ...answer})
 const setErrorAC = (answer) => ({type: SET_ERROR, ...answer})
 const logOutAC = () => ({type: LOG_OUT})
+const onGameRequestAC = () => ({type: ON_GAME_REQUEST})
 
 export const sendFormData = (reqType, email, password, nickname = undefined) => async (dispatch) => {
 
@@ -67,5 +72,20 @@ export const sendFormData = (reqType, email, password, nickname = undefined) => 
 export const logOut = () => (dispatch) => {
     dispatch(logOutAC())
 }
+
+
+export const onGameRequest = () => (dispatch) => {
+    dispatch(onGameRequestAC())
+}
+
+export const onGameRequestAccept = (_id, socket) => () => {
+    socket.emit("game_request_accept", `${_id}`)
+}
+
+
+export const send_game_request_ = (user_id, nickname, _id, socket) => {
+    socket.emit("game_request", {user_id, nickname, sender_id: _id})
+}
+
 
 export default registrationPageReducer
